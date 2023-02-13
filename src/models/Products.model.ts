@@ -16,4 +16,11 @@ export default class ProductModel {
     const insert = { id: insertId, ...product };
     return insert;
   }
+
+  public async getAllProductsData(): Promise<IProduct[]> {
+    const QUERY = 'SELECT * FROM Trybesmith.products';
+    const products = await this.connection.execute(QUERY);
+    const [rows] = products;
+    return rows as IProduct[];
+  }
 }
